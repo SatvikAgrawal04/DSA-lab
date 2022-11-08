@@ -1,6 +1,6 @@
 #include <stdio.h>
 int r = -1, f = -1;
-int q[10];
+// int q[10];
 void enqueue(int x, int n, int q[])
 {
     if (r == -1)
@@ -20,7 +20,7 @@ void enqueue(int x, int n, int q[])
     if (f == -1)
         f = 0;
 }
-void dequeue(int n, int q[])
+int dequeue(int n, int q[])
 {
     if (f == r)
     {
@@ -32,6 +32,7 @@ void dequeue(int n, int q[])
     {
         f = (f + 1) % n;
         printf("%d has been dequeued", q[f]);
+        retrun q[f];
         q[f] = 0;
     }
 }
