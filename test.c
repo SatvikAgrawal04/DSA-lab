@@ -21,7 +21,7 @@ struct node* create()
     nw->left = create();
     printf("Enter right child of %d: ", x);
     nw->right = create();
-    return nw;
+    return nw;   
 }
 
 void main()
