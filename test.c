@@ -1,11 +1,31 @@
 #include<stdio.h>
-int main(int argc, char const *argv[])
+#include<stdlib.h>
+
+struct node
 {
-    int a = 56;
-    int *r = &a;
-    printf("%d\n", r);
-    int *q[10];
-    q[0] = r;
-    printf("%d", q[0]);
-    return 0;
+    int data;
+    struct node *left, *right;
+}; 
+
+struct node* create()
+{
+    struct node *nw;
+    nw = (struct node *)malloc(sizeof(struct node));
+    int x;
+    printf("Enter value (-1 for no value): ");
+    scanf("%d", &x);
+    if(x == -1)
+        return 0;
+    nw->data = x;
+    printf("Enter left child of %d: ", x);
+    nw->left = create();
+    printf("Enter right child of %d: ", x);
+    nw->right = create();
+    return nw;
+}
+
+void main()
+{
+    struct node *root;
+    root = create();
 }
