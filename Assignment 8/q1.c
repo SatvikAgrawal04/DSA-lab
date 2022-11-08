@@ -32,7 +32,6 @@ int dequeue(int n, int q[])
     {
         f = (f + 1) % n;
         printf("%d has been dequeued", q[f]);
-        retrun q[f];
         q[f] = 0;
     }
 }
