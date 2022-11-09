@@ -12,7 +12,7 @@ struct node *create()
     struct node *nw;
     nw = (struct node *)malloc(sizeof(struct node));
     int x;
-    printf("Enter root value: ");
+    printf("\nEnter value(-1 for null): ");
     scanf("%d", &x);
     if (x == -1)
     {
