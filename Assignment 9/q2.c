@@ -18,7 +18,6 @@ void sort(int a[], int n)
 
 int binarySearch(int x, int a[], int l, int r, int n)
 {
-    sort(a, n);
     if (l <= r)
     {
         int m = (l + r) / 2;
@@ -50,6 +49,7 @@ int main()
     int x;
     printf("Enter element to search: ");
     scanf("%d", &x);
+    sort(arr, n);
     int f = binarySearch(x, arr, 0, (n - 1), n);
     if (f = 1)
     {
