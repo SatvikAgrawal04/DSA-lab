@@ -67,12 +67,76 @@ void postorder(struct node *root)
     printf("%d ", root->data);
 }
 
+int depthOfTree(struct node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        int lDepth = depthOfTree(root->left);
+        int rDepth = depthOfTree(root->right);
+        if (lDepth > rDepth)
+        {
+            return (lDepth + 1);
+        }
+        else
+        {
+            return (rDepth + 1);
+        }
+    }
+}
+
+int getLeafCount(struct node *root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+    if (root->left == NULL && root->right == NULL)
+    {
+        return 1;
+    }
+    else
+    {
+        return getLeafCount(root->left) + getLeafCount(root->right);
+    }
+}
+
+int nonLeafCount(struct node *root)
+{
+    if (root == NULL || (root->left == NULL && root->right == NULL))
+    {
+        return 0;
+    }
+    return 1 + nonLeafCount(root->left) + nonLeafCount(root->right);
+}
+
+void checkBST(struct node *root, int *f)
+{
+    if ((*f) == 1 || root == NULL)
+    {
+        return;
+    }
+    else if (root->right != NULL && root->data > root->right->data)
+    {
+        *f = 1;
+    }
+    else if (root->left != NULL && root->data < root->left->data)
+    {
+        *f = 1;
+    }
+    checkBST(root->left, f);
+    checkBST(root->right, f);
+}
+
 void main()
 {
     struct node *root = NULL;
     int c;
 MENU:
-    printf("\n\nEnter your choice: \n 1. Create \n 2. Inorder \n 3. Preorder\n 4. Postorder\n");
+    printf("\n\nEnter your choice: \n 0. EXIT\n 1. Create \n 2. Inorder \n 3. Preorder\n 4. Postorder\n 5. Depth of Tree\n 6. Count leaf nodes\n 7. Count non leaf nodes\n 8. Check BST\n");
     scanf("%d", &c);
     switch (c)
     {
@@ -108,6 +172,58 @@ MENU:
         if (!checkEmpty(root))
         {
             postorder(root);
+        }
+        else
+        {
+            printf("Empty");
+        }
+        goto MENU;
+    case 5:
+        if (!checkEmpty(root))
+        {
+            int depth = depthOfTree(root);
+            printf("Deapth of tree is: %d", depth);
+        }
+        else
+        {
+            printf("Empty");
+        }
+        goto MENU;
+    case 6:
+        if (!checkEmpty(root))
+        {
+            int count = getLeafCount(root);
+            printf("No. of leaf nodes are: %d", count);
+        }
+        else
+        {
+            printf("Empty");
+        }
+        goto MENU;
+    case 7:
+        if (!checkEmpty(root))
+        {
+            int count = nonLeafCount(root);
+            printf("No. of non leaf nodes are: %d", count);
+        }
+        else
+        {
+            printf("Empty");
+        }
+        goto MENU;
+    case 8:
+        if (!checkEmpty(root))
+        {
+            int f = 0;
+            checkBST(root, &f);
+            if (f == 1)
+            {
+                printf("Not BST");
+            }
+            else
+            {
+                printf("BST");
+            }
         }
         else
         {
