@@ -33,8 +33,8 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < n; i++)
     {
-        printf("\n%d\t%s\t%c", (stud + i)->roll, (stud + i)->name, (stud + i)->grade) ;
+        printf("\n%d\t%s\t%c", (stud + i)->roll, (stud + i)->name, (stud + i)->grade);
     }
 
     return 0;
-}sw
+}

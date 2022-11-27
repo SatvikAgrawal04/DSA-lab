@@ -26,7 +26,14 @@ struct node *create()
     nw->right = create();
     return nw;
 }
-
+int checkEmpty(struct node *root)
+{
+    if (root == NULL)
+    {
+        return 1;
+    }
+    return 0;
+}
 void preorder(struct node *root)
 {
     if (root == NULL)
@@ -62,15 +69,52 @@ void postorder(struct node *root)
 
 void main()
 {
-    struct node *root;
-    root = create();
-
-   printf("preorder is: ");
-   preorder(root); 
-
-   printf("\nInorder is: ");
-   inorder(root);
-
-   printf("\nPosorder is: ");
-   postorder(root);
+    struct node *root = NULL;
+    int c;
+MENU:
+    printf("\n\nEnter your choice: \n 1. Create \n 2. Inorder \n 3. Preorder\n 4. Postorder\n");
+    scanf("%d", &c);
+    switch (c)
+    {
+    case 1:
+        if (checkEmpty(root))
+        {
+            root = create();
+        }
+        else
+            printf("Already exists\n");
+        goto MENU;
+    case 2:
+        if (!checkEmpty(root))
+        {
+            inorder(root);
+        }
+        else
+        {
+            printf("Empty");
+        }
+        goto MENU;
+    case 3:
+        if (!checkEmpty(root))
+        {
+            preorder(root);
+        }
+        else
+        {
+            printf("Empty");
+        }
+        goto MENU;
+    case 4:
+        if (!checkEmpty(root))
+        {
+            postorder(root);
+        }
+        else
+        {
+            printf("Empty");
+        }
+        goto MENU;
+    default:
+        break;
+    }
 }
